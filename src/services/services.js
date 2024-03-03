@@ -2,7 +2,7 @@ import axios from "axios";
 import { json } from "react-router-dom";
 
 
-class testService{
+class Services{
 
     async searchStay(setTourList,key){
         return await axios.get(`https://apis.data.go.kr/B551011/KorService1/searchKeyword1?serviceKey=${key}&numOfRows=30&MobileOS=WIN&_type=json&MobileApp=test&listYN=Y&keyword=경복궁`)
@@ -85,4 +85,4 @@ class testService{
     }
 }
 
-export default new testService()
+export default new Services()

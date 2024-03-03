@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive'
-import testService from "../services/testServices";
+import testService from "../services/services";
 import {Translator, Translate} from 'react-auto-translate';
 import 'bulma/css/bulma.css'
 

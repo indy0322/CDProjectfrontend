@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import testService from "../services/testServices";
+import Services from "../services/services";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import {Translator, Translate} from 'react-auto-translate';
 import 'bulma/css/bulma.css'
@@ -54,7 +54,7 @@ function Test() {
             .then((res) => {
                 console.log(res.data.data.translations[0].translatedText)
             })*/
-        testService.searchStay(setTourList,key)
+        Services.searchStay(setTourList,key)
 
         
     },[])
@@ -100,11 +100,11 @@ function Test() {
 
     const onClickBtn = async() => {
         
-        await testService.nodetest()
+        await Services.nodetest()
     }
 
     const onLogin = async() => {
-        await testService.login(setToken,{id: id, pw: pw})
+        await Services.login(setToken,{id: id, pw: pw})
     }
 
     const changeId = (e) => {
@@ -116,7 +116,7 @@ function Test() {
     }
 
     const registerBtn = () => {
-        testService.register({name: registerName, email: resgisterId, password: registerPw})
+        Services.register({name: registerName, email: resgisterId, password: registerPw})
     }
 
     const onAuth = () => {
@@ -131,7 +131,7 @@ function Test() {
         }
 
         try{
-            testService.auth(option)
+            Services.auth(option)
         }catch(err){
             console.log(err)
         }
