@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import axios from "axios";
-import testService from "../services/testServices";
+import testService from "../../services/testServices";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import {Translator, Translate} from 'react-auto-translate';
 import 'bulma/css/bulma.css'
