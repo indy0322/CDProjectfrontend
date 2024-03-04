@@ -9,7 +9,11 @@ import OpenAI from "openai";
 function Introduce() {
 
     useEffect(async () => {
-        
+        let tourData = JSON.parse(localStorage.getItem('tourData'))
+        if(tourData){
+            const tourImage = document.getElementsByClassName('tourImage')[0]
+            tourImage.src = tourData.firstimage
+        }
         /*const explainTextarea = document.getElementsByClassName('explainTextarea')[0]
         explainTextarea.innerHTML = ""*/
 
@@ -78,11 +82,11 @@ function Introduce() {
 
     const onClickTourExplainBtn = () => {
         const tourExplainBtn = document.getElementsByClassName('tourExplainBtn')[0]
-        const reviewRightBtn = document.getElementsByClassName('reviewRightBtn')[0]
+        //const reviewRightBtn = document.getElementsByClassName('reviewRightBtn')[0]
         const explainTextareaContainer = document.getElementsByClassName('explainTextareaContainer')[0]
 
         tourExplainBtn.style.display = "none"
-        reviewRightBtn.style.marginTop = "2vw"
+        //reviewRightBtn.style.marginTop = "2vw"
         explainTextareaContainer.style.display = "block"
     }
     
@@ -276,7 +280,7 @@ function Introduce() {
             {isMobile && <div className="isMobile">
             <div className="imageContainer" style={{height:"40vh",width:"100vw",top:"0",position:"fixed"}}>        
                 <figure className="image" style={{height:"40vh"}}>
-                    <img style={{width:"100vw", height:"40vh",top:"0",position:"fixed"}} src="http://tong.visitkorea.or.kr/cms/resource/33/2678633_image2_1.jpg"/>
+                    <img className="tourImage" style={{width:"100vw", height:"40vh",top:"0",position:"fixed"}} src="http://tong.visitkorea.or.kr/cms/resource/33/2678633_image2_1.jpg"/>
                 </figure>
                 <img className="backBtn" type="button" style={{top:"2vw", left:"2vw",position:"fixed", width:"10vw"}} onClick={onClickBackBtn} src="/images/back.png"></img>
                 <span className="mapBtn" type="button" style={{top:"32vh", right:"2vw",position:"fixed",fontSize:"10vw"}}>🗺️</span>
@@ -284,10 +288,10 @@ function Introduce() {
             </div>
 
             <div className="contentsContainer" style={{backgroundColor:"white",top:"40vh", position:"fixed", width:"100vw", height:"50vh",alignItems:"center",display:"flex", flexDirection:"column"}}>
-                <button className="button is-dark reviewRightBtn" onClick={onClickReviewBtn} style={{marginTop:"10vh",marginBottom:"2vw"}}>리뷰작성</button>
+                {/*<button className="button is-dark reviewRightBtn" onClick={onClickReviewBtn} style={{marginTop:"10vh",marginBottom:"2vw"}}>리뷰작성</button>*/}
                 <button className="button is-link tourExplainBtn" onClick={onClickTourExplainBtn} style={{marginTop:"10vw"}}>관광지 소개</button>
                 
-                <div className="explainTextareaContainer" style={{width:"90vw",marginLeft:"5vw",display:"none"}}>
+                <div className="explainTextareaContainer" style={{width:"90vw",marginTop:"5vh",display:"none"}}>
                     <textarea className="explainTextarea textarea is-danger" disabled rows={9}>경복궁 소개 내용</textarea>
                 </div>
             </div>

@@ -5,6 +5,7 @@ import Introduce from './components/introduce';
 import Introduce2 from './components/introduce2';
 import Review from './components/review';
 import Start from './components/start';
+import MainPage from './components/main';
 import MapWithLanguageSetting from './components/maptestfolder/MapWithLanguageSetting';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
@@ -15,8 +16,9 @@ function App() {
         <Routes>
           <Route path='/mapwith' element={<MapWithLanguageSetting/>}></Route>
           <Route path='/' element={<Start/>}></Route>
+          <Route path='/main' element={<MainPage/>}></Route>
           <Route path="/test" element={<Test/>}></Route>
-          <Route path='/introduce' element={<Introduce2/>}></Route>
+          <Route path='/introduce/:tourId' element={<Introduce2/>}></Route>
           <Route path='/tour/:tourName' element={<Introduce/>}></Route>
           <Route path='/review/:tourId' element={<Review/>}></Route>
         </Routes>
