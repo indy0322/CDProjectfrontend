@@ -189,16 +189,14 @@ function Introduce() {
 
             <div className="imageContainer" style={{height:"50vh",width:"50vw",top:"8vh",position:"fixed"}}>        
                 <figure className="image" style={{height:"50vh"}}>
-                    <img style={{width:"50vw", height:"50vh",top:"8vh",position:"fixed"}} src="http://tong.visitkorea.or.kr/cms/resource/33/2678633_image2_1.jpg"/>
+                    <img className="tourImage" style={{width:"50vw", height:"50vh",top:"8vh",position:"fixed"}} src="http://tong.visitkorea.or.kr/cms/resource/33/2678633_image2_1.jpg"/>
                 </figure>
                 <span className="heartBtn heartFull" type="button" style={{top:"8vh",left:"1vw",position:"fixed",fontSize:"3vw"}} onClick={onClickHeart}>❤️</span>
             </div>
 
             <div className="contentsContainer" style={{backgroundColor:"white",top:"8vh",right:"0",position:"fixed", width:"50vw", height:"50vh"}}>
                 <div style={{width:"48vw",top:"15vh",right:"0",position:"fixed",margin:"1vw"}}>
-                    <textarea className="explainTextarea textarea is-danger" disabled rows={9} style={{fontSize:"20px"}}>경복궁은 대한민국 서울에 위치한 대표적인 궁궐로, 조선 시대에 건립된 역사적인 건물입니다. 이 궁궐은 1395년에 처음으로 건립되었으며, 조선 왕조의 정부 중심지로 사용되었습니다. 경복궁은 조선 왕조의 주요 궁궐 중 하나로 꼽히며, 대한민국에서 가장 큰 궁궐로 알려져 있습니다.
-경복궁은 그 자체로 아름다운 건축물과 정원, 돌담, 다양한 문화 유산을 갖추고 있어 많은 방문객들에게 사랑을 받고 있습니다. 대표적인 건물로는 경회루(경복궁에서 가장 큰 건물), 국립고궁박물관, 혜화문, 국립민속박물관 등이 있습니다.
-경복궁은 궁궐 자체뿐만 아니라 그 주변에 위치한 창경궁, 창덕궁, 종묘 등과 함께 서울의 대표적인 관광 명소 중 하나로 손꼽힙니다. 또한, 매년 여름에는 경복궁에서 전통적인 한복을 입은 인원들이 모여 참여하는 '한복 퍼레이드'와 같은 다양한 행사들이 개최되어 관광객들에게 특별한 경험을 선사하고 있습니다.</textarea>
+                    <textarea className="explainTextarea textarea is-danger" disabled rows={9} style={{fontSize:"20px"}}>관광지 설명</textarea>
                 </div>
 
                 <div style={{margin:"2vw",right:"25vw", top:"7vh",position:"fixed"}}>
