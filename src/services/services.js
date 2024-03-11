@@ -27,9 +27,14 @@ class Services{
     async auth(option){
         try{
             return await axios.get(`https://port-0-testpro-17xco2nlt6nmnfk.sel5.cloudtype.app/api/auth`,option)
-                .then((res) => {
-                    console.log(res)
+                .then(async (res) => {
+                    return await res.data
                 })
+                .then((res) => {
+                    console.log(res.message)
+                    console.log(res.data.nickname)
+                })
+                
         }
         catch(err){
             

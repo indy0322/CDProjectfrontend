@@ -13,6 +13,7 @@ function Introduce() {
         if(tourData){
             const tourImage = document.getElementsByClassName('tourImage')[0]
             tourImage.src = tourData.firstimage
+            setTourimage(tourData.firstimage)
         }
         /*const explainTextarea = document.getElementsByClassName('explainTextarea')[0]
         explainTextarea.innerHTML = ""*/
@@ -26,6 +27,7 @@ function Introduce() {
     const param = useParams()
 
     const [tourLang, setTourLang] = useState()
+    const [tourimage, setTourimage] = useState()
 
     const onOpenClose = () => {
         //setInnerState(!innerState)
@@ -146,7 +148,7 @@ function Introduce() {
             <nav class="navbar" role="navigation" aria-label="main navigation" style={{height:"8vh"}}>
                 <div class="navbar-brand">
                     <a class="navbar-item" href="https://bulma.io">
-                    <img src="#" width="112" height="28"/>
+                    <img src="/images/logo.png" width="50" height="28"/>
                     </a>
 
                     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -195,8 +197,11 @@ function Introduce() {
             </div>
 
             <div className="contentsContainer" style={{backgroundColor:"white",top:"8vh",right:"0",position:"fixed", width:"50vw", height:"50vh"}}>
-                <div style={{width:"48vw",top:"15vh",right:"0",position:"fixed",margin:"1vw"}}>
+                <div className="explainTextareaContainer" style={{width:"48vw",top:"15vh",right:"0",position:"fixed",margin:"1vw", display:"none"}}>
                     <textarea className="explainTextarea textarea is-danger" disabled rows={9} style={{fontSize:"20px"}}>관광지 설명</textarea>
+                </div>
+                <div>
+                    <button className="button is-link tourExplainBtn" onClick={onClickTourExplainBtn} style={{width:"20vw",top:"30vh",right:"15vw",position:"fixed",margin:"1vw"}}>관광지 소개</button>
                 </div>
 
                 <div style={{margin:"2vw",right:"25vw", top:"7vh",position:"fixed"}}>

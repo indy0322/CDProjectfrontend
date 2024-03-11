@@ -31,8 +31,12 @@ function Start() {
 
     const modalOpen = () => {
         const modal = document.getElementsByClassName("modal")[0]
+        const certLabel = document.getElementsByClassName("certLabel")[0]
+        const cert = document.getElementsByClassName("cert")[0]
 
         modal.classList.add("is-active")
+        certLabel.style.display = "none"
+        cert.style.display = "none"
     }
 
     const onClickBackBtn = (e) => {
@@ -63,6 +67,27 @@ function Start() {
         //localStorage.setItem('language',e.target.id.split(' ')[0])
         localStorage.setItem('language',JSON.stringify({"lang1": e.target.id.split(' ')[0],"lang2": e.target.id.split(' ')[1]}))
         setGoogleLang(e.target.id.split(' ')[0])
+    }
+
+
+
+    const onClickModalContentLanguage = () => {
+        const contentsLanguage = document.getElementsByClassName("modalcontentsLanguage")[0]
+        const isActive = document.getElementsByClassName("is-active")[1]
+        const languageOpen = document.getElementsByClassName("modallanguageOpen")[0]
+        if(languageOpen){
+            contentsLanguage.classList.remove("is-active")
+            contentsLanguage.classList.remove("modallanguageOpen")
+        }else if(!languageOpen){
+            contentsLanguage.classList.add("is-active")
+            contentsLanguage.classList.add("modallanguageOpen")
+        }
+
+    }
+
+    const onClickModalChangeLanguage = (e) =>{
+        const contentLanguageTitle = document.getElementsByClassName("modalcontentLanguageTitle")[0]
+        contentLanguageTitle.innerHTML = e.target.innerHTML
     }
 
     return(
@@ -110,17 +135,15 @@ function Start() {
                 </div>
                 
                 <div className="emailPasswordContainer" style={{width:"30vw",marginRight:"35vw",marginLeft:"35vw",marginTop:"1vw", marginBottom:"1vw"}}>
-                    <label className="label" style={{float:"left"}}>이메일</label>
+                    <label className="label" style={{float:"left",color:"white"}}>이메일</label>
                     <input class="email input is-info" type="text" placeholder="Email" style={{marginBottom:"1vw"}}></input>
-                    <label className="label" style={{float:"left"}}>비밀번호</label>
+                    <label className="label" style={{float:"left",color:"white"}}>비밀번호</label>
                     <input className="password input is-info" type="text" placeholder="Password" ></input>
                 </div>
                 <div class="buttons" style={{alignItems:"center",justifyContent:"center"}}>
-                    <button className="button is-info">로그인</button>
+                    <button className="button is-info" onClick={() => {window.location.href = '/main'}}>로그인</button>
                     <button className="button is-success" onClick={modalOpen}>회원가입</button>
                 </div>
-
-
 
                 <div className="modal">
                     <div className="modal-background modalBackground" onClick={modalClose}></div>
@@ -133,12 +156,62 @@ function Start() {
                             <input class="email input is-info" type="text" placeholder="Email" style={{marginBottom:"2vw"}}></input>
                             <label className="label" style={{textAlign:"left"}}>비밀번호</label>
                             <input className="password input is-info" type="text" placeholder="Password" style={{marginBottom:"2vw"}}></input>
-                            <div className="sss" style={{width:"100vw"}}>
+
+
+
+                            <label className="label" style={{textAlign:"left"}}>사용언어 선택</label>
+                            <div className="modalcontentsLanguage modallanguageOpen dropdown" style={{margin:"1vw"}}>
+                                <div className="dropdown-trigger">
+                                    <button className="button is-link" aria-haspopup="true" style={{width:"10vw"}} aria-controls="dropdown-menu3" onClick={onClickModalContentLanguage}>
+                                        <span className="modalcontentLanguageTitle">한국어</span>
+                                        <i className="fas fa-angle-down" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
+                                <div style={{marginLeft:"5vw"}}>
+                                    <button className="registerBtn button is-danger" onClick={() => {
+                                        const certLabel = document.getElementsByClassName("certLabel")[0]
+                                        const cert = document.getElementsByClassName("cert")[0]
+
+                                        certLabel.style.display = "block"
+                                        cert.style.display = "block"
+                                    }}>인증번호 발송</button>
+                                </div>
+
+                                <div className="dropdown-menu" id="dropdown-menu3" role="menu" style={{width:"100%"}}>
+                                    <div className="dropdown-content" style={{width:"10vw",height:"10vh",overflowY:"scroll"}}>
+                                        <a href="#" class="dropdown-item" style={{width:"8vw",padding:"1vw"}} id='ko 한국어' onClick={onClickModalChangeLanguage}>
+                                            한국어
+                                        </a>
+                                        <a className="dropdown-item" style={{width:"8vw",padding:"1vw"}} id='ja 日本語' onClick={onClickModalChangeLanguage}>
+                                            日本語
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"8vw",padding:"1vw"}} id='en English' onClick={onClickModalChangeLanguage}>
+                                            English
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"8vw",padding:"1vw"}} id="zh-CN 中国人" onClick={onClickModalChangeLanguage}>
+                                            中文
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"8vw",padding:"1vw"}} id="ru Русский" onClick={onClickModalChangeLanguage}>
+                                            Русский
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"8vw",padding:"1vw"}} onClick={onClickModalChangeLanguage}>
+                                            Português
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"8vw",padding:"1vw"}} onClick={onClickModalChangeLanguage}>
+                                            Español
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div className="certLabel" style={{width:"100vw"}}>
                                 <label className="label" style={{textAlign:"left"}}>인증번호</label>
                             </div>
-                            <div style={{float:"left"}}> 
+                            <div className="cert" style={{float:"left"}}> 
                                 <input className="password input is-danger" type="text" placeholder="Certifiacation" style={{marginBottom:"2vw",width:"19vw",float:"left"}}></input>
-                                <button className="registerBtn button is-danger" style={{textAlign:"left",marginLeft:"1vw"}}>번호 발송</button>
                             </div>
                             <div>
                                 <button className="registerBtn button is-success" style={{marginTop:"2vw"}}>회원가입</button>
@@ -214,7 +287,7 @@ function Start() {
                     <input className="password input is-info" type="text" style={{width:"100vw"}}></input>
                 </div>
                 <div class="buttons" style={{alignItems:"center",justifyContent:"center"}}>
-                    <button className="button is-link">로그인</button>
+                    <button className="button is-link" onClick={() => {window.location.href = '/main'}}>로그인</button>
                     <button className="button is-success" onClick={modalOpen}>회원가입</button>
                 </div>
 
@@ -231,10 +304,59 @@ function Start() {
                             <input class="email input is-info" type="text" style={{marginBottom:"2vw"}}></input>
                             <label className="label" style={{textAlign:"left"}}>비밀번호</label>
                             <input className="password input is-info" type="text" style={{marginBottom:"2vw"}}></input>
-                            <label className="label" style={{textAlign:"left"}}>인증번호</label>
-                            <div>
+
+
+                            <label className="label" style={{textAlign:"left"}}>사용언어 선택</label>
+                            <div className="modalcontentsLanguage modallanguageOpen dropdown" style={{margin:"2vw"}}>
+                                <div className="dropdown-trigger">
+                                    <button className="button is-link" aria-haspopup="true" aria-controls="dropdown-menu3" onClick={onClickModalContentLanguage}>
+                                        <span className="modalcontentLanguageTitle">한국어</span>
+                                        <i className="fas fa-angle-down" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
+                                <div style={{marginLeft:"12vw"}}>
+                                    <button className="registerBtn button is-danger" onClick={() => {
+                                        const certLabel = document.getElementsByClassName("certLabel")[0]
+                                        const cert = document.getElementsByClassName("cert")[0]
+
+                                        certLabel.style.display = "block"
+                                        cert.style.display = "block"
+                                    }}>인증번호 발송</button>
+                                </div>
+
+                                <div className="dropdown-menu" id="dropdown-menu3" role="menu" style={{width:"100%"}}>
+                                    <div className="dropdown-content" style={{width:"25vw",height:"10vh",overflowY:"scroll"}}>
+                                        <a href="#" class="dropdown-item" style={{width:"15vw",padding:"1vw"}} id='ko 한국어' onClick={onClickModalChangeLanguage}>
+                                            한국어
+                                        </a>
+                                        <a className="dropdown-item" style={{width:"15vw",padding:"1vw"}} id='ja 日本語' onClick={onClickModalChangeLanguage}>
+                                            日本語
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"15vw",padding:"1vw"}} id='en English' onClick={onClickModalChangeLanguage}>
+                                            English
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"15vw",padding:"1vw"}} id="zh-CN 中国人" onClick={onClickModalChangeLanguage}>
+                                            中文
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"15vw",padding:"1vw"}} id="ru Русский" onClick={onClickModalChangeLanguage}>
+                                            Русский
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"15vw",padding:"1vw"}} onClick={onClickModalChangeLanguage}>
+                                            Português
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"15vw",padding:"1vw"}} onClick={onClickModalChangeLanguage}>
+                                            Español
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+
+                            <label className="label certLabel" style={{textAlign:"left", display:"none"}}>인증번호</label>
+                            <div className="cert" style={{display:"none"}}>
                                 <input className="password input is-danger" type="text" style={{marginBottom:"2vw",width:"40vw",float:"left"}}></input>
-                                <button className="registerBtn button is-danger" style={{marginLeft:"1vw"}}>번호 발송</button>
                             </div>
                             <div>
                                 <button className="registerBtn button is-success" style={{marginTop:"2vw"}}>회원가입</button>

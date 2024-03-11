@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import 'bulma/css/bulma.min.css';
 import './translate.css';
+import { useNavigate } from "react-router-dom";
 
 function Translate() {
   const [inputText, setInputText] = useState('');
@@ -9,6 +10,8 @@ function Translate() {
   const [isDropdownOpen1, setIsDropdownOpen1] = useState(false);
   const [selectedLanguage2, setSelectedLanguage2] = useState('Korean');
   const [isDropdownOpen2, setIsDropdownOpen2] = useState(false);
+
+  const navigate = useNavigate()
 
   const toggleDropdown1 = () => {
     setIsDropdownOpen1(!isDropdownOpen1);
@@ -37,12 +40,16 @@ function Translate() {
   const translate = () => {
     setOutputText(inputText);
   };
+
+  const onClickBackBtn = (e) => {
+    navigate(-1)
+}
   
   return (
     <div className="App">
+      <img className="backBtn" type="button" style={{top:"2vw", left:"2vw",position:"fixed", width:"10vw"}} onClick={onClickBackBtn} src="/images/back.png"></img>
       <section className="section">
         <div className="container">
-          <h1 className="title">Translator</h1>
           <div className="columns is-mobile column">
             <div className="column">
               <div className={`dropdown ${isDropdownOpen1 ? 'is-active' : ''}`}>
