@@ -98,8 +98,11 @@ function Introduce() {
     }
 
     const onClickReviewBtn = (e) => {
-        window.location.href = "/review/경복궁"
-        //navigate("/review/경복궁")
+        let tourData = JSON.parse(localStorage.getItem('tourData'))
+        if(tourData){
+            window.location.href = `/review/${tourData.title}`
+        }
+        
     }
 
     const onClickBackBtn = (e) => {
@@ -183,6 +186,43 @@ function Introduce() {
                             <a class="button is-link">
                                 Log in
                             </a>
+                            <div className="contentsLanguage languageOpen dropdown">
+                                <div className="dropdown-trigger">
+                                    <button className="button is-info" aria-haspopup="true" aria-controls="dropdown-menu3" onClick={onClickContentLanguage}>
+                                        <span className="contentLanguageTitle">한국어</span>
+                                        <i className="fas fa-angle-down" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <div className="dropdown-menu" id="dropdown-menu3" role="menu" style={{width:"100%"}}>
+                                    <div className="dropdown-content" style={{width:"6vw",height:"30vh",overflowY:"scroll"}}>
+                                        <a href="#" class="dropdown-item" style={{width:"6vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
+                                            한국어
+                                        </a>
+                                        <a className="dropdown-item" style={{width:"6vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
+                                            日本語
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"6vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
+                                            English
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"6vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
+                                            中文
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"6vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
+                                            Русский
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"6vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
+                                            عربي    
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"6vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
+                                            Português
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"6vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
+                                            Español
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
                             </div>
                         </div>
                     </div>
@@ -208,48 +248,7 @@ function Introduce() {
                     <button className="button is-danger" style={{width:"10vw"}}>관광지 지도</button>
                 </div>
 
-                <div className="contentsLanguage languageOpen dropdown" style={{margin:"2vw", top:"7vh",position:"fixed"}}>
-                    <div className="dropdown-trigger">
-                        <button className="button is-info" aria-haspopup="true" aria-controls="dropdown-menu3" onClick={onClickContentLanguage} style={{width:"10vw"}}>
-                            <span className="contentLanguageTitle">한국어</span>
-                            <i className="fas fa-angle-down" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                    <div className="dropdown-menu" id="dropdown-menu3" role="menu">
-                        <div className="dropdown-content" style={{width:"20vw",height:"30vh",overflowY:"scroll"}}>
-                            <a href="#" class="dropdown-item" style={{width:"15vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
-                                한국어
-                            </a>
-                            <a className="dropdown-item" style={{width:"15vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
-                                중국어
-                            </a>
-                            <a href="#" className="dropdown-item" style={{width:"15vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
-                                영어
-                            </a>
-                            <a href="#" className="dropdown-item" style={{width:"15vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
-                                일본어
-                            </a>
-                            <a href="#" className="dropdown-item" style={{width:"15vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
-                                러시아어
-                            </a>
-                            <a href="#" className="dropdown-item" style={{width:"15vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
-                                대만어
-                            </a>
-                            <a href="#" className="dropdown-item" style={{width:"15vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
-                                포르투갈어
-                            </a>
-                            <a href="#" className="dropdown-item" style={{width:"15vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
-                                스페인어
-                            </a>
-                            <a href="#" className="dropdown-item" style={{width:"15vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
-                                베트남어
-                            </a>
-                            <a href="#" className="dropdown-item" style={{width:"15vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
-                                그 외
-                            </a>
-                        </div>
-                    </div>
-                </div>
+
             </div>
 
             <div style={{top:"58vh",right:"0",position:"fixed"}}>
@@ -345,6 +344,7 @@ function Introduce() {
             <div className="reviewContainer close" style={{height:"13vh",width:"100vw",backgroundColor: "rgba(0,0,0,0)",bottom:"0",position:"fixed", transition: "height 0.5s"}}>
                 <button className="btn open button is-light" style={{color:"red", height:"3vh",width:"20vw"}} onClick={onOpenClose}>open</button>
                 <div className="review" style={{backgroundColor:"skyblue",height:"0vh",width:"100vw",bottom:"10vh",position:"fixed", transition:"height 0.5s", overflowY:"scroll"}}>
+                    <button className="button is-dark reviewRightBtn" onClick={onClickReviewBtn} style={{marginTop:"1vh",marginBottom:"2vw"}}>리뷰작성</button>
                     <div className="box" style={{margin:"1vw", fontWeight:"bold"}}>
                         (닉네임) 좋은 관광지~~~
                     </div>

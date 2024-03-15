@@ -1,19 +1,19 @@
-.App {
+.Translate {
   text-align: center;
 }
 
-.App-logo {
+.Translate-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .Translate-logo {
+    animation: Translate-logo-spin infinite 20s linear;
   }
 }
 
-.App-header {
+.Translate-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -24,11 +24,11 @@
   color: white;
 }
 
-.App-link {
+.Translate-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
+@keyframes Translate-logo-spin {
   from {
     transform: rotate(0deg);
   }

@@ -11,15 +11,21 @@ function Review() {
     useEffect(() => {
         console.log(params)
 
-        const tourname = document.getElementsByClassName("tourname")[0]
-        const nickname = document.getElementsByClassName("nickname")[0]
+        //const tourname = document.getElementsByClassName("tourname")[0]
+        //const nickname = document.getElementsByClassName("nickname")[0]
 
-        tourname.defaultValue = params.tourId
-        nickname.defaultValue = "kim"
-        setNickName(nickname.value)
-        setTourName(tourname.value)
+        //tourname.defaultValue = params.tourId
+        //nickname.defaultValue = "kim"
+        setNickName("kim")
+        setTourName(params.tourId)
 
-        console.log(tourname.value)
+        //console.log(tourname.value)
+
+        let lang = JSON.parse(localStorage.getItem('language'))
+        if(lang){
+            //console.log(lang.lang1)
+            setGoogleLang(lang.lang1)
+        }
     },[])
     
     const isDesktop = useMediaQuery({ query: '(min-width:769px)' })
@@ -31,6 +37,7 @@ function Review() {
     const [tourName, setTourName] = useState()
     const [nickName, setNickName] = useState()
     const [reviewContent, setReviewContent] = useState()
+    const [googleLang, setGoogleLang] = useState('ko')
 
 
     const onClickReviewRegister = () => {
@@ -105,7 +112,7 @@ function Review() {
             <nav class="navbar" role="navigation" aria-label="main navigation" style={{height:"8vh"}}>
                 <div class="navbar-brand">
                     <a class="navbar-item" href="https://bulma.io">
-                    <img src="#" width="112" height="28"/>
+                    <img src="/images/logo.png" width="50" height="28"/>
                     </a>
 
                     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -140,6 +147,42 @@ function Review() {
                             <a class="button is-link">
                                 Log in
                             </a>
+                            <div className="contentsLanguage languageOpen dropdown">
+                                <div className="dropdown-trigger">
+                                    <button className="button is-info" aria-haspopup="true" aria-controls="dropdown-menu3" onClick={onClickContentLanguage}>
+                                        <span className="contentLanguageTitle">한국어</span>
+                                        <i className="fas fa-angle-down" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <div className="dropdown-menu" id="dropdown-menu3" role="menu" style={{width:"100%"}}>
+                                    <div className="dropdown-content" style={{width:"6vw",height:"30vh",overflowY:"scroll"}}>
+                                        <a href="#" class="dropdown-item" style={{width:"6vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
+                                            한국어
+                                        </a>
+                                        <a className="dropdown-item" style={{width:"6vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
+                                            日本語
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"6vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
+                                            English
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"6vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
+                                            中文
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"6vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
+                                            Русский
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"6vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
+                                            عربي    
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"6vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
+                                            Português
+                                        </a>
+                                        <a href="#" className="dropdown-item" style={{width:"6vw",padding:"1vw"}} onClick={onClickChangeLanguage}>
+                                            Español
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -150,19 +193,21 @@ function Review() {
                 <div className="field" style={{marginBottom:"5vh", marginTop:"5vh"}}>
                     <label className="label">관광지명</label>
                     <div className="control" style={{width:"50vw",marginLeft:"25vw",marginRight:"25vw"}}>
-                        <input className="tourname input is-success" type="text" disabled/>
+                        <span class="tourname tag" style={{marginBottom:"1vh",width:"50vw",height:"5vh",fontSize:"1vw", border:"solid"}}><Translate>{tourName}</Translate></span>
+                        
                     </div>
                 </div>
                 <div className="field" style={{marginBottom:"5vh"}}>
                     <label className="label">닉네임</label>
                     <div className="control" style={{width:"50vw",marginLeft:"25vw",marginRight:"25vw"}}>
-                        <input className="nickname input is-success" type="text" disabled/>
+                        <span class="tag" style={{marginBottom:"1vh",width:"50vw",height:"5vh",fontSize:"1vw",border:"solid"}}>{nickName}</span>
+                        
                     </div>
                 </div>
                 <div className="field" style={{marginBottom:"10vh"}}>
                     <label className="label">내용</label>
                     <div className="control" style={{width:"50vw",marginLeft:"25vw",marginRight:"25vw"}}>
-                        <textarea className="textarea is-success" onChange={onChangeReview}></textarea>
+                        <textarea className="textarea" style={{border:"solid"}} onChange={onChangeReview}></textarea>
                     </div>
                 </div>
                 <div class="field is-grouped" style={{alignItems:"center",justifyContent:"center"}}>
@@ -174,25 +219,37 @@ function Review() {
             </div>}
 
 
+
+            
+
+
             {isMobile && <div>
+                <Translator
+                    //cacheProvider={cacheProvider}
+                    /*from='ko'
+                    to={googleLang}
+                    googleApiKey={process.env.REACT_APP_GOOGLE}*/
+                >
                 <div className="contentsContainer" style={{top:"10vh",position:"fixed"}}>
                     <img className="backBtn" type="button" style={{top:"2vw", left:"2vw",position:"fixed", width:"10vw"}} onClick={onClickBackBtn} src="/images/back.png"></img>
                     <div className="field">
                         <label className="label">관광지명</label>
                         <div className="control" style={{width:"90vw",margin:"5vw"}}>
-                            <input className="tourname input is-success" type="text" disabled/>
+                            <span class="tourname tag" style={{marginBottom:"1vh",width:"90vw",height:"5vh",fontSize:"5vw", border:"solid"}}><Translate>{tourName}</Translate></span>
+                            {/*<input className="tourname input is-success" type="text" disabled/>*/}
                         </div>
                     </div>
                     <div className="field">
                         <label className="label">닉네임</label>
                         <div className="control" style={{width:"90vw",margin:"5vw"}}>
-                            <input className="nickname input is-success" type="text" disabled/>
+                            <span class="tag" style={{marginBottom:"1vh",width:"90vw",height:"5vh",fontSize:"5vw",border:"solid"}}>{nickName}</span>
+                            {/*<input className="nickname input is-success" type="text" disabled/>*/}
                         </div>
                     </div>
                     <div className="field">
                         <label className="label">내용</label>
                         <div className="control" style={{width:"90vw",margin:"5vw"}}>
-                            <textarea className="textarea is-success" onChange={onChangeReview}></textarea>
+                            <textarea className="textarea" onChange={onChangeReview} style={{border:"solid"}}></textarea>
                         </div>
                     </div>
                     <div class="field is-grouped" style={{alignItems:"center",justifyContent:"center"}}>
@@ -201,6 +258,7 @@ function Review() {
                         </div>
                     </div>
                 </div>
+                </Translator>
 
                 <div className="languageContainerBtn langBtnClose" style={{zIndex:"1", backgroundColor: "rgba(0,0,0,0)",top:"40vh",right:"0", position:"fixed", width:"4vw",height:"8vh",transition: "width 0.5s"}}>
                     <button className="languageBtn open button is-success" style={{color:"red", height:"8vh",width:"1vw",padding:"2vw",float:"left",writingMode:"vertical-rl",fontSize:"3vw"}} onClick={onClicklanguageBtn}>언어</button>
