@@ -351,9 +351,9 @@ function Search() {
                 <div class="card">
                 <Translator
                     //cacheProvider={cacheProvider}
-                    /*from='ko'
+                    from='ko'
                     to={googleLang}
-                    googleApiKey={process.env.REACT_APP_GOOGLE}*/
+                    googleApiKey={process.env.REACT_APP_GOOGLE}
                 >
                 {searchResults.map((spot) => (
                         <>
