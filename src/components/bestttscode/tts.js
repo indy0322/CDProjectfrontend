@@ -77,7 +77,7 @@ function Tts() {
         await axios.post('https://api.openai.com/v1/audio/transcriptions',formData,{
             headers: {
                 "Content-Type":"multipart/form-data",
-                Authorization:`Bearer ${proccess.env.REACT_APP_CHATGPT}`
+                Authorization:`Bearer ${process.env.REACT_APP_CHATGPT}`
             }
         })
         .then((res) => {
@@ -85,7 +85,7 @@ function Tts() {
         })
         
         /*const openai = new OpenAI({
-            apiKey: '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',//process.env.CHATGPTKEY,
+            apiKey: '',//process.env.CHATGPTKEY,
             dangerouslyAllowBrowser: true
         })
 
