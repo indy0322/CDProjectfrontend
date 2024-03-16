@@ -77,7 +77,7 @@ function Tts() {
         await axios.post('https://api.openai.com/v1/audio/transcriptions',formData,{
             headers: {
                 "Content-Type":"multipart/form-data",
-                Authorization:`Bearer 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`
+                Authorization:`Bearer ${proccess.env.REACT_APP_CHATGPT}`
             }
         })
         .then((res) => {
