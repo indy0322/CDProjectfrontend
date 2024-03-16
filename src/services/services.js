@@ -82,7 +82,7 @@ class Services{
     }
 
     async audioMp3(data){
-        return await axios.post('https://port-0-testpro-17xco2nlt6nmnfk.sel5.cloudtype.app/api/audio',data,{responseType:'blob'})
+        return await axios.post('/api/audio',data,{responseType:'blob'})
             .then((res) => {
                 const audioObjectUrl = URL.createObjectURL(res.data)
                 return audioObjectUrl

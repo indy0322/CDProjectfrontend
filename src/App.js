@@ -11,6 +11,7 @@ import Translate from './components/translate';
 import User from './components/user';
 import Main from './components/main';
 import MapWithLanguageSetting from './components/maptestfolder/MapWithLanguageSetting';
+import Tts from './components/tts';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/main" element={<Main/>}></Route>
           <Route path='/map' element={<Map/>}></Route>
           <Route path="/test" element={<Test/>}></Route>
+          <Route path="/tts" element={<Tts/>}></Route>
           <Route path='/introduce/:tourId' element={<Introduce2/>}></Route>
           <Route path='/tour/:tourName' element={<Introduce/>}></Route>
           <Route path='/review/:tourId' element={<Review/>}></Route>
